@@ -46,8 +46,6 @@ namespace SorgeProject.Object
         public void SetPosition(Draggable draggable)
         {
             var idx = infomations.IndexOf(draggable as InfomationBehaviour);
-            Debug.Log(draggable, draggable);
-            Debug.Log(idx, draggable);
             draggable.transform.SetParent(transform);
             (draggable.transform as RectTransform).anchoredPosition = locator.GetPosition(idx);
         }

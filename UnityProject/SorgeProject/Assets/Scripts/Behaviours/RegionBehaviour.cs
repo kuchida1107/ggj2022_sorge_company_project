@@ -9,14 +9,26 @@ namespace SorgeProject.Object
     public class RegionBehaviour : MonoBehaviour, IDropable
     {
         [SerializeField] NATION_NAME m_name;
-        [SerializeField] EnumerabledLocator m_locator;
+        EnumerabledLocator locator;
+        private List<InfomationBehaviour> infomations;
 
         public NATION_NAME Name { get => m_name; }
-        
+
+        private void Start()
+        {
+            infomations = new List<InfomationBehaviour>();
+            locator = GetComponent<EnumerabledLocator>();
+            for(int i = 0; i < locator.Count; i++)
+            {
+                infomations.Add(null);
+            }
+        }
+
         public bool IsDropable(Draggable draggable)
         {
             if (draggable is InfomationBehaviour infomation)
             {
+                if (infomation.NationName == this.Name) return false;
                 if (!infomation.IsHand) return Controller.PlayerDataConroller.Instance.IsPurchasable(infomation);
                 else return true;
             }
@@ -31,6 +43,8 @@ namespace SorgeProject.Object
         public void OnExit(Draggable draggable)
         {
             draggable.transform.SetParent(transform.parent);
+            int idx = infomations.IndexOf(draggable as InfomationBehaviour);
+            infomations[idx] = null;
         }
 
         public void Pop<T>(Draggable draggable) where T : Draggable
@@ -42,12 +56,20 @@ namespace SorgeProject.Object
         public void SetPosition(Draggable draggable)
         {
             draggable.transform.SetParent(transform);
-            (draggable.transform as RectTransform).anchoredPosition = Vector3.zero;
+            for (int i = 0; i < infomations.Count; i++)
+            {
+                Debug.Log(infomations[i]);
+                if (infomations[i] != null) continue;
+                infomations[i] = draggable as InfomationBehaviour;
+                (draggable.transform as RectTransform).anchoredPosition = locator.GetPosition(i);
+                break;
+            }
         }
 
-        public void SendInfomation(InfomationBehaviour infomation)
+        public void ReceiveInfomation(InfomationBehaviour infomation)
         {
             Controller.RegionController.Instance.AddParameter(m_name, infomation.Power, infomation.Moral, infomation.Trust);
+            Controller.EventController.Instance.CheckEventClear(infomation.EventId, Name);
         }
     }
 }

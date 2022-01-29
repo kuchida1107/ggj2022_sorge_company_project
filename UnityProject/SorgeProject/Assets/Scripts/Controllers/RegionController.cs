@@ -8,6 +8,7 @@ namespace SorgeProject.Controller
     public class RegionController : MonoBehaviour, IController
     {
         [SerializeField] NationMeterController meterController;
+        [SerializeField] RegionParams initParams;
 
         RegionParams alphaniaParam;
         RegionParams betalandParam;
@@ -16,8 +17,8 @@ namespace SorgeProject.Controller
 
         public void PlayStart()
         {
-            alphaniaParam = new RegionParams();
-            betalandParam = new RegionParams();
+            alphaniaParam = new RegionParams(initParams);
+            betalandParam = new RegionParams(initParams);
         }
 
         public void PlayUpdate()
@@ -59,16 +60,20 @@ namespace SorgeProject.Controller
             target.power += power;
             target.moral += moral;
             target.trust += trust;
-            Debug.Log(target.power);
-            Debug.Log(target.moral);
-            Debug.Log(target.trust);
         }
     }
 
+    [System.Serializable]
     public class RegionParams
     {
-        public int power;
-        public int moral;
-        public int trust;
+        public int power = 50;
+        public int moral = 50;
+        public int trust = 50;
+        public RegionParams(RegionParams src)
+        {
+            power = src.power;
+            moral = src.moral;
+            trust = src.trust;
+        }
     }
 }

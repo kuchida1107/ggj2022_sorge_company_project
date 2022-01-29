@@ -14,6 +14,8 @@ namespace SorgeProject.Object
         float FadeAwayTime = 1.0f;
         Coroutine lifeSpanCoroutine;
         Coroutine colorTransitionCoroutine;
+
+        public NATION_NAME NationName => nationName;
         NATION_NAME nationName;
         [SerializeField] CircleLimitRenderer timerRenderer;
         [SerializeField] Image informationColorTap;
@@ -28,6 +30,8 @@ namespace SorgeProject.Object
         public int Power { get; private set; }
         public int Moral { get; private set; }
         public int Trust { get; private set; }
+
+        public int EventId { get; private set; }
 
         public bool IsHand { get; set; } = false;
 
@@ -77,6 +81,8 @@ namespace SorgeProject.Object
             Power = data.power;
             Moral = data.moral;
             Trust = data.trust;
+
+            EventId = data.event_id;
         }
 
         void Start()
@@ -91,6 +97,11 @@ namespace SorgeProject.Object
                 StopCoroutine(lifeSpanCoroutine);
                 timerRenderer.Fade();
             }
+        }
+
+        public void Destroy()
+        {
+            StartFadeAwayAndDestroy(CanvasGroup, FadeAwayTime);
         }
 
         public IEnumerator LifeSpan(float lifeTime)

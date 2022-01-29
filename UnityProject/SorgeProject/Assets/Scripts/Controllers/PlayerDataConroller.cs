@@ -52,14 +52,14 @@ namespace SorgeProject.Controller
         {
             Money -= infomation.Cost;
             Money += infomation.SellCost;
-            dst.SendInfomation(infomation);
+            dst.ReceiveInfomation(infomation);
         }
 
         public void Sell(InfomationBehaviour infomation, RegionBehaviour target)
         {
             Money += infomation.SellCost;
             hand.RemoveInfomation(infomation);
-            target.SendInfomation(infomation);
+            target.ReceiveInfomation(infomation);
         }
 
         public static PlayerDataConroller Instance { get; private set; }

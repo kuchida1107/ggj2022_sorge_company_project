@@ -9,5 +9,7 @@ namespace SorgeProject.Object
         {
             return locators[index].anchoredPosition;
         }
+
+        public int Count { get => locators.Length; }
     } 
 }
