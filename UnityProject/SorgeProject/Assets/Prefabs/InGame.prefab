@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 2594554636536267176}
   - component: {fileID: 4955920829565527479}
   - component: {fileID: 879319609824502697}
+  - component: {fileID: 552156106}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -582,6 +583,19 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: $00000
+--- !u!114 &552156106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237436747328080664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e38ad82485c5a740ad4498006865ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_text: {fileID: 879319609824502697}
 --- !u!1 &3359068985531479271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1763,7 @@ GameObject:
   - component: {fileID: 3425870786743380595}
   - component: {fileID: 8931565138714341658}
   - component: {fileID: 7184263298237429456}
+  - component: {fileID: 138338935}
   m_Layer: 5
   m_Name: Money
   m_TagString: Untagged
@@ -1813,6 +1828,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &138338935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491968991828544740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20223776b6a7cb47b49564a799de033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stringView: {fileID: 552156106}
 --- !u!1 &8025444180031353622
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,6 +2200,7 @@ GameObject:
   - component: {fileID: 8895037523922613625}
   - component: {fileID: 8895037523922613631}
   - component: {fileID: 8895037523922613630}
+  - component: {fileID: 466985846}
   m_Layer: 5
   m_Name: Betaland
   m_TagString: Untagged
@@ -2235,6 +2264,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &466985846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895037523922613624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99273f71eac73a4c92b6242271a8ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8895037523938432672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,6 +2287,7 @@ GameObject:
   - component: {fileID: 8895037523938432673}
   - component: {fileID: 8895037523938432679}
   - component: {fileID: 8895037523938432678}
+  - component: {fileID: 466985848}
   m_Layer: 5
   m_Name: Keep
   m_TagString: Untagged
@@ -2316,6 +2358,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &466985848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895037523938432672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47571287ea05c7945b2de7acadfaffa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8895037523971036378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2579,7 @@ GameObject:
   - component: {fileID: 8895037524597316160}
   - component: {fileID: 8895037524597316166}
   - component: {fileID: 8895037524597316161}
+  - component: {fileID: 466985844}
   m_Layer: 5
   m_Name: Alphania
   m_TagString: Untagged
@@ -2588,6 +2643,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &466985844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895037524597316163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99273f71eac73a4c92b6242271a8ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8895037525411555191
 GameObject:
   m_ObjectHideFlags: 0
