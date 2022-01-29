@@ -83,6 +83,9 @@ namespace SorgeProject.Controller
                 case EndingType.COLD_WAR:
                     SceneManager.LoadScene("Ending-cold");
                     break;
+                case EndingType.PEACE:
+                    SceneManager.LoadScene("Ending-peace");
+                    break;
                 case EndingType.BURN_WAR:
                     SceneManager.LoadScene("Ending-burn");
                     break;
@@ -110,6 +113,7 @@ namespace SorgeProject.Controller
         BETA_WIN,
         COLD_WAR,
         BURN_WAR,
+        PEACE,
         DEATH
     }
 

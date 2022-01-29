@@ -68,10 +68,19 @@ namespace SorgeProject.Controller
         private void EndingCheck()
         {
             EndingType? type = null;
-            if (alphaniaParam.power - betalandParam.power > 50) type = EndingType.ALPHA_WIN;
+            if (alphaniaParam.trust <= 0 || alphaniaParam.trust <= 0) type = EndingType.DEATH;
+            else if (alphaniaParam.power - betalandParam.power > 50) type = EndingType.ALPHA_WIN;
             else if (betalandParam.power - alphaniaParam.power > 50) type = EndingType.BETA_WIN;
-            else if (alphaniaParam.moral > 70 && betalandParam.moral > 70) type = EndingType.BURN_WAR;
-            else if (alphaniaParam.power < 30 && betalandParam.power < 30) type = EndingType.COLD_WAR;
+            else
+            {
+                bool isMoralHigh = alphaniaParam.moral > 70 && betalandParam.moral > 70;
+                bool isPowerHigh = alphaniaParam.power > 70 && betalandParam.power > 70;
+                bool isMoralLow = alphaniaParam.moral < 30 && betalandParam.moral < 30;
+                bool isPowerLow = alphaniaParam.power < 30 && betalandParam.power > 30;
+                if (isMoralHigh && isPowerHigh) type = EndingType.BURN_WAR;
+                else if (isMoralHigh && isPowerLow) type = EndingType.COLD_WAR;
+                else if (isMoralLow && isPowerHigh) type = EndingType.PEACE;
+            }
 
             if (type == null) return;
             Debug.Log("エンディングに達成しました。");
