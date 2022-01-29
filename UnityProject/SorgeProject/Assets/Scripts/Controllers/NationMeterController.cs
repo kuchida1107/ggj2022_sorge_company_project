@@ -44,7 +44,9 @@ public class NationMeterController : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR
             EditorUtility.DisplayDialog("Null Error", "Set Meter UI variables", "OK");
+#endif
         }
     }
 

@@ -2,9 +2,9 @@
 "companyName": "DefaultCompany",
 "productName": "SorgeProject",
 "productVersion": "0.1",
-"dataUrl": "Build.data.unityweb",
-"wasmCodeUrl": "Build.wasm.code.unityweb",
-"wasmFrameworkUrl": "Build.wasm.framework.unityweb",
+"dataUrl": "docs.data.unityweb",
+"wasmCodeUrl": "docs.wasm.code.unityweb",
+"wasmFrameworkUrl": "docs.wasm.framework.unityweb",
 "graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
 "webglContextAttributes": {"preserveDrawingBuffer": false},
 "splashScreenStyle": "Dark",
@@ -12,5 +12,5 @@
 "cacheControl": {"default": "must-revalidate"},
 "developmentBuild": false,
 "multithreading": false,
-"unityVersion": "2019.4.34f1"
+"unityVersion": "2019.4.35f1"
 }
