@@ -59,6 +59,7 @@ namespace SorgeProject.Object
                     Controller.PlayerDataConroller.Instance.Sell(this, nextRegion);
                     StopColorTransition();
                 }
+                StartFadeAwayAndDestroy(CanvasGroup, FadeAwayTime);
             }
         }
 
@@ -105,6 +106,11 @@ namespace SorgeProject.Object
                yield return null;
             }
 
+            StartFadeAwayAndDestroy(CanvasGroup, FadeAwayTime);
+        }
+
+        void StartFadeAwayAndDestroy(CanvasGroup canvasGroup, float lifeTime)
+        {
             if (CanvasGroup)
             {
                 CanvasGroup.interactable = false;
