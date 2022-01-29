@@ -20,7 +20,11 @@ namespace SorgeProject.Util
         private void Start()
         {
             canvasGroup = GetComponent<CanvasGroup>();
-            parent = GetComponentInParent<IDropable>();
+        }
+
+        public void Initialize(IDropable dropable)
+        {
+            parent = dropable;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
