@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using SorgeProject.Util;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEditor;
 using SorgeProject.Data;
 
@@ -11,73 +10,93 @@ namespace SorgeProject.Object
 {
     public class InfomationBehaviour : Draggable
     {
-        [SerializeField]
-        Image LifeSpanMeterImage = null;
         float FadeAwayTime = 1.0f;
-        CanvasGroup InformationCanvasGroup;
+        Coroutine lifeSpanCoroutine;
+        [SerializeField] CircleLimitRenderer timerRenderer;
 
         public float LifeTime { get; private set; }
-        public int Cost { get; private set; }
 
-        public override void OnChanged()
+        public int Cost { get; private set; }
+        public int SellCost { get; private set; }
+
+        public int Power { get; private set; }
+        public int Moral { get; private set; }
+        public int Trust { get; private set; }
+
+        public bool IsHand { get; set; } = false;
+
+        public override void OnChanged(IDropable prev, IDropable next)
         {
-            print("kawattayo");
+            if (next is HandBehaviour)
+            {
+                if (prev is RegionBehaviour)
+                {
+                    print("購入イベント");
+                    Controller.PlayerDataConroller.Instance.Purchase(this);
+                    IsHand = true;
+                    StopLifeSpan();
+                }
+            }
+            else if (next is RegionBehaviour nextRegion)
+            {
+                if (prev is RegionBehaviour prevRegion)
+                {
+                    print("移動イベント");
+                    Controller.PlayerDataConroller.Instance.Move(this, prevRegion, nextRegion);
+                    StopLifeSpan();
+                }
+                else if (prev is HandBehaviour)
+                {
+                    print("売却イベント");
+                    IsHand = false;
+                    Controller.PlayerDataConroller.Instance.Sell(this, nextRegion);
+                }
+            }
         }
 
         public void SetData(InfoData data, float lifeTime)
         {
             LifeTime = lifeTime;
+            Cost = data.price;
+            SellCost = (int) Mathf.Round((float)Cost * (data.profit + 1f));
 
-            //必ず直すこと
-            Cost = 10;
+            Power = data.power;
+            Moral = data.moral;
+            Trust = data.trust;
         }
 
-        private void Awake()
+        void Start()
         {
-            if (LifeSpanMeterImage == null)
-            {
-                EditorUtility.DisplayDialog("Null Error", "Set Meter UI variables", "OK");
-            }
-
-            InformationCanvasGroup = GetComponent<CanvasGroup>();
-
-            if (InformationCanvasGroup == null)
-            {
-                EditorUtility.DisplayDialog("Null Error", "Canvas Group not found", "OK");
-            }
+            lifeSpanCoroutine = StartCoroutine(LifeSpan(LifeTime));
         }
 
-        private void Start()
+        void StopLifeSpan()
         {
-            if (LifeSpanMeterImage)
+            if (lifeSpanCoroutine != null)
             {
-                LifeSpanMeterImage.fillAmount = 1f;
-                StartCoroutine(LifeSpan(LifeSpanMeterImage, LifeTime));
+                StopCoroutine(lifeSpanCoroutine);
+                timerRenderer.Fade();
             }
         }
 
-        public IEnumerator LifeSpan(Image fillImage, float lifeTime)
+        public IEnumerator LifeSpan(float lifeTime)
         {
-            if (fillImage == null)
-                yield break;
-
             float startTime = Time.time;
             float time = lifeTime;
-            float value = 0;
 
             while (Time.time - startTime < lifeTime)
             {
                 time -= Time.deltaTime;
-                value = time / lifeTime;
-                fillImage.fillAmount = value;
-                yield return null;
+                float value = time / lifeTime;
+                timerRenderer.SetValue(value);
+               yield return null;
             }
 
-            if (InformationCanvasGroup)
+            if (CanvasGroup)
             {
-                InformationCanvasGroup.interactable = false;
-                InformationCanvasGroup.blocksRaycasts = false;
-                StartCoroutine(FadeAwayAndDestroy(InformationCanvasGroup, FadeAwayTime));
+                CanvasGroup.interactable = false;
+                CanvasGroup.blocksRaycasts = false;
+                StartCoroutine(FadeAwayAndDestroy(CanvasGroup, FadeAwayTime));
             }
         }
 

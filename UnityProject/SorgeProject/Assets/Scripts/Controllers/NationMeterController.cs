@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 
+
+public enum NATION_NAME
+{
+    ALPHA,
+    BETA,
+}
+
 public class NationMeterController : MonoBehaviour
 {
 
@@ -24,12 +31,6 @@ public class NationMeterController : MonoBehaviour
         POWER,
         MORAL,
         TRUST,
-    }
-
-    public enum NATION_NAME
-    {
-        ALPHA,
-        BETA,
     }
 
     // Start is called before the first frame update

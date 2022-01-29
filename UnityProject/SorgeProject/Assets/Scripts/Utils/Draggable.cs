@@ -14,23 +14,26 @@ namespace SorgeProject.Util
     public abstract class Draggable : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
     {
         Vector3 originPos;
-        CanvasGroup canvasGroup;
-        IDropable parent;
 
-        private void Start()
-        {
-            canvasGroup = GetComponent<CanvasGroup>();
+        protected CanvasGroup CanvasGroup { get
+            {
+                if (_canvasGroup == null) _canvasGroup = GetComponent<CanvasGroup>();
+                return _canvasGroup;
+            }
         }
+        private CanvasGroup _canvasGroup;
+
+        public IDropable Parent { get; private set; }
 
         public void Initialize(IDropable dropable)
         {
-            parent = dropable;
+            Parent = dropable;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (parent != null) parent.OnExit(this);
-            canvasGroup.blocksRaycasts = false;
+            if (Parent != null) Parent.OnExit(this);
+            CanvasGroup.blocksRaycasts = false;
             originPos = transform.position;
         }
 
@@ -41,21 +44,25 @@ namespace SorgeProject.Util
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            canvasGroup.blocksRaycasts = true;
+            CanvasGroup.blocksRaycasts = true;
             var dropObject = eventData.pointerEnter;
             var drop = dropObject?.GetComponent<IDropable>();
 
             if (drop == null || !drop.IsDropable(this))
             {
                 transform.position = originPos;
-                if (parent != null) parent.OnDrop(this);
+                if (Parent != null) Parent.OnDrop(this);
                 return;
             }
 
-            parent = drop;
+            if (drop != Parent)
+            {
+                OnChanged(Parent, drop);
+                Parent = drop;
+            }
             drop.OnDrop(this);
         }
 
-        public abstract void OnChanged();
+        public abstract void OnChanged(IDropable prev, IDropable next);
     }
 }

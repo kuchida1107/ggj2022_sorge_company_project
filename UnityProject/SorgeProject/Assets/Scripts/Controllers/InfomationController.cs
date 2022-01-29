@@ -72,5 +72,7 @@ namespace SorgeProject.Controller
             instance.SetData(data, infoLifeTime);
             regions[regionIdx].Pop<InfomationBehaviour>(instance);
         }
+
+        public static InfomationController Instance { get; private set; }
     }
 }

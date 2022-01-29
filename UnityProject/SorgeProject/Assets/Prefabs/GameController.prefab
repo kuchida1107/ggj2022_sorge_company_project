@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7805157272208093607}
   - component: {fileID: 7805157272208093606}
   - component: {fileID: 226453267}
+  - component: {fileID: 1470362333}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -77,5 +78,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84ede36aae404bbbcac28e87b0eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initMoney: 0
+  initMoney: 100
   hand: {fileID: 0}
+  m_money: {fileID: 0}
+--- !u!114 &1470362333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805157272208093601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9268796e99b925c4fa0b642ac1c1db99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

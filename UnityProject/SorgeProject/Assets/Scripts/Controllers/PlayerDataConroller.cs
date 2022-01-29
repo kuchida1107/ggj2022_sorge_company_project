@@ -1,16 +1,13 @@
-﻿using System.Collections;
+﻿using SorgeProject.Object;
+using SorgeProject.Util;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SorgeProject.Controller
 {
-    public interface IPurchase
-    {
-        bool IsPurchasable(Object.InfomationBehaviour infomation);
-        void Purchase(Object.InfomationBehaviour infomation);
-    }
-
-    public class PlayerDataConroller : MonoBehaviour, IController, IPurchase
+    public class PlayerDataConroller : MonoBehaviour, IController
     {
         [SerializeField] int initMoney = 100;
 
@@ -18,15 +15,12 @@ namespace SorgeProject.Controller
 
         [SerializeField] MoneyBehaviour m_money;
 
-
         public bool IsInitialized => true;
 
         public void PlayStart()
         {
             PlayingTime = 0f;
             Money = initMoney;
-
-            hand.Controller = this;
         }
 
         public void PlayUpdate()
@@ -35,7 +29,9 @@ namespace SorgeProject.Controller
             m_money.View = Money;
         }
 
-        public void Setup(){}
+        public void Setup() {
+            Instance = this;
+        }
 
         public float PlayingTime { get; private set; }
 
@@ -46,11 +42,26 @@ namespace SorgeProject.Controller
             return infomation.Cost < Money;
         }
 
-        public void Purchase(Object.InfomationBehaviour infomation)
+        public void Purchase(InfomationBehaviour infomation)
         {
-            Debug.Log(infomation.Cost);
-            Debug.Log(Money);
             Money -= infomation.Cost;
+            hand.PushInfomation(infomation);
         }
+
+        public void Move(InfomationBehaviour infomation, RegionBehaviour src, RegionBehaviour dst)
+        {
+            Money -= infomation.Cost;
+            Money += infomation.SellCost;
+            dst.SendInfomation(infomation);
+        }
+
+        public void Sell(InfomationBehaviour infomation, RegionBehaviour target)
+        {
+            Money += infomation.SellCost;
+            hand.RemoveInfomation(infomation);
+            target.SendInfomation(infomation);
+        }
+
+        public static PlayerDataConroller Instance { get; private set; }
     }
 }

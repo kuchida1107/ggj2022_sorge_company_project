@@ -8,10 +8,16 @@ namespace SorgeProject.Object
 {
     public class RegionBehaviour : MonoBehaviour, IDropable
     {
-        //仮
+        [SerializeField] NATION_NAME m_name;
+
         public bool IsDropable(Draggable draggable)
         {
-            return true;
+            if (draggable is InfomationBehaviour infomation)
+            {
+                if (!infomation.IsHand) return Controller.PlayerDataConroller.Instance.IsPurchasable(infomation);
+                else return true;
+            }
+            return false;
         }
 
         public void OnDrop(Draggable draggable)
@@ -34,6 +40,11 @@ namespace SorgeProject.Object
         {
             draggable.transform.SetParent(transform);
             (draggable.transform as RectTransform).anchoredPosition = Vector3.zero;
+        }
+
+        public void SendInfomation(InfomationBehaviour infomation)
+        {
+            Controller.RegionController.Instance.AddParameter(m_name, infomation.Power, infomation.Moral, infomation.Trust);
         }
     }
 }
