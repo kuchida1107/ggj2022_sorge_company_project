@@ -12,6 +12,7 @@ namespace SorgeProject.Object
     {
         float FadeAwayTime = 1.0f;
         Coroutine lifeSpanCoroutine;
+        NATION_NAME nationName;
         [SerializeField] CircleLimitRenderer timerRenderer;
 
         public float LifeTime { get; private set; }
@@ -54,10 +55,12 @@ namespace SorgeProject.Object
             }
         }
 
-        public void SetData(InfoData data, float lifeTime)
+        public void SetData(InfoData data, float lifeTime, NATION_NAME nation_name)
         {
             LifeTime = lifeTime;
+            nationName = nation_name;
             Cost = data.price;
+
             SellCost = (int) Mathf.Round((float)Cost * (data.profit + 1f));
 
             Power = data.power;

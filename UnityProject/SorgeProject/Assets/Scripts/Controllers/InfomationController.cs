@@ -69,7 +69,7 @@ namespace SorgeProject.Controller
 
             var instance = Instantiate(infomationPrefab, region.transform);
 
-            instance.SetData(data, infoLifeTime);
+            instance.SetData(data, infoLifeTime, region.Name);
             regions[regionIdx].Pop<InfomationBehaviour>(instance);
         }
 
