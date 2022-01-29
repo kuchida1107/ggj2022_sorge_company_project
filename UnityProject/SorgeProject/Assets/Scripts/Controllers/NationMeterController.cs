@@ -9,6 +9,7 @@ public enum NATION_NAME
 {
     ALPHA,
     BETA,
+    NONE,
 }
 
 public class NationMeterController : MonoBehaviour

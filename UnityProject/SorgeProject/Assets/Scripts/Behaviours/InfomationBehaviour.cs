@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using SorgeProject.Util;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 using SorgeProject.Data;
 
@@ -12,8 +13,12 @@ namespace SorgeProject.Object
     {
         float FadeAwayTime = 1.0f;
         Coroutine lifeSpanCoroutine;
+        Coroutine colorTransitionCoroutine;
         NATION_NAME nationName;
         [SerializeField] CircleLimitRenderer timerRenderer;
+        [SerializeField] Image informationColorTap;
+        [SerializeField] Color alphaniaColor, betalandColor, nuetralColor;
+        [SerializeField] float colorTransitionTime = 10.0f;
 
         public float LifeTime { get; private set; }
 
@@ -36,6 +41,7 @@ namespace SorgeProject.Object
                     Controller.PlayerDataConroller.Instance.Purchase(this);
                     IsHand = true;
                     StopLifeSpan();
+                    StartColorTransition();
                 }
             }
             else if (next is RegionBehaviour nextRegion)
@@ -51,6 +57,7 @@ namespace SorgeProject.Object
                     print("売却イベント");
                     IsHand = false;
                     Controller.PlayerDataConroller.Instance.Sell(this, nextRegion);
+                    StopColorTransition();
                 }
             }
         }
@@ -59,6 +66,9 @@ namespace SorgeProject.Object
         {
             LifeTime = lifeTime;
             nationName = nation_name;
+
+            SetNationColor(nation_name);
+
             Cost = data.price;
 
             SellCost = (int) Mathf.Round((float)Cost * (data.profit + 1f));
@@ -121,6 +131,55 @@ namespace SorgeProject.Object
             }
 
             Destroy(this);
+        }
+
+        void StartColorTransition()
+        {
+            colorTransitionCoroutine = StartCoroutine(ColorTransition());
+        }
+
+        void StopColorTransition()
+        {
+            StopCoroutine(colorTransitionCoroutine);
+            SetNationColor(nationName); //変化途中の色を元に戻すため
+        }
+
+        IEnumerator ColorTransition()
+        {
+            if (informationColorTap == null)
+                yield break;
+
+            float startTime = Time.time;
+            float time = colorTransitionTime;
+            float value = 0;
+            Color originalColor = informationColorTap.color;
+
+            while (Time.time - startTime < colorTransitionTime)
+            {
+                time -= Time.deltaTime;
+                value = time / colorTransitionTime;
+                informationColorTap.color = Color.Lerp(nuetralColor, originalColor, value);
+                yield return null;
+            }
+
+            nationName = NATION_NAME.NONE;
+        }
+
+        void SetNationColor(NATION_NAME eName)
+        {
+            switch (eName)
+            {
+                case NATION_NAME.ALPHA:
+                    informationColorTap.color = alphaniaColor;
+                    break;
+                case NATION_NAME.BETA:
+                    informationColorTap.color = betalandColor;
+                    break;
+                case NATION_NAME.NONE:
+                default:
+                    informationColorTap.color = nuetralColor;
+                    break;
+            }
         }
     }
 }
