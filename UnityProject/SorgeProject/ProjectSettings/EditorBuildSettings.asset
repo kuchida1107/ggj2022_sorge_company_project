@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Ending-burn.unity
+    guid: abd0c9cdb10435e4fb204c71f5b9e7a4
+  - enabled: 1
+    path: Assets/Scenes/Ending-cold.unity
+    guid: 5b886cbc797168c488b89e71ac673ef8
+  - enabled: 1
+    path: Assets/Scenes/Ending-kill.unity
+    guid: f728eb22202da70489b96d211a8ff36b
+  - enabled: 1
+    path: Assets/Scenes/Ending-winA.unity
+    guid: 4909dda8cb0b6b94cb26aa2557aef246
+  - enabled: 1
+    path: Assets/Scenes/Ending-winB.unity
+    guid: e5a39076304dbe14dab4f2cc4875bdf6
   m_configObjects: {}

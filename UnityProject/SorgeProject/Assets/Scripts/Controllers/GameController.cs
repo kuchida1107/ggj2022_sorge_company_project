@@ -75,14 +75,19 @@ namespace SorgeProject.Controller
             switch(endingType)
             {
                 case EndingType.ALPHA_WIN:
+                    SceneManager.LoadScene("Ending-winA");
                     break;
                 case EndingType.BETA_WIN:
+                    SceneManager.LoadScene("Ending-winB");
                     break;
                 case EndingType.COLD_WAR:
+                    SceneManager.LoadScene("Ending-cold");
                     break;
                 case EndingType.BURN_WAR:
+                    SceneManager.LoadScene("Ending-burn");
                     break;
                 case EndingType.DEATH:
+                    SceneManager.LoadScene("Ending-kill");
                     break;
             }
         }
