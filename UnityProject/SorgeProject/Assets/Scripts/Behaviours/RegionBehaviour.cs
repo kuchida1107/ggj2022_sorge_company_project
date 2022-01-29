@@ -9,7 +9,10 @@ namespace SorgeProject.Object
     public class RegionBehaviour : MonoBehaviour, IDropable
     {
         [SerializeField] NATION_NAME m_name;
+        [SerializeField] EnumerabledLocator m_locator;
 
+        public NATION_NAME Name { get => m_name; }
+        
         public bool IsDropable(Draggable draggable)
         {
             if (draggable is InfomationBehaviour infomation)
