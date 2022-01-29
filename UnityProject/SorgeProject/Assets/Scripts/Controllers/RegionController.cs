@@ -60,6 +60,22 @@ namespace SorgeProject.Controller
             target.power += power;
             target.moral += moral;
             target.trust += trust;
+
+            EndingCheck();
+        }
+
+        // エンディング条件の関数 条件は仮
+        private void EndingCheck()
+        {
+            EndingType? type = null;
+            if (alphaniaParam.power - betalandParam.power > 50) type = EndingType.ALPHA_WIN;
+            else if (betalandParam.power - alphaniaParam.power > 50) type = EndingType.BETA_WIN;
+            else if (alphaniaParam.moral > 70 && betalandParam.moral > 70) type = EndingType.BURN_WAR;
+            else if (alphaniaParam.power < 30 && betalandParam.power < 30) type = EndingType.COLD_WAR;
+
+            if (type == null) return;
+            Debug.Log("エンディングに達成しました。");
+            GameController.Instance.GameEnd((EndingType)type);
         }
     }
 

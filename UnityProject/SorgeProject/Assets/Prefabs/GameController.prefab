@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7805157272208093606}
   - component: {fileID: 226453267}
   - component: {fileID: 1470362333}
+  - component: {fileID: 978728118}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -81,6 +82,7 @@ MonoBehaviour:
   initMoney: 100
   hand: {fileID: 0}
   m_money: {fileID: 0}
+  m_playTime: {fileID: 0}
 --- !u!114 &1470362333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,3 +95,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9268796e99b925c4fa0b642ac1c1db99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meterController: {fileID: 0}
+  initParams:
+    power: 50
+    moral: 50
+    trust: 50
+--- !u!114 &978728118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805157272208093601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd21d8f6713ffa2438d43410f2c2b5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheetName: event_data
+  eventKeepTime: 60
+  eventPopTime: 40
+  eventPrefab: {fileID: 7288525259761682951, guid: 7db8fe06701dc274abad0d3fdd1d27bc,
+    type: 3}
+  eventRoot: {fileID: 0}

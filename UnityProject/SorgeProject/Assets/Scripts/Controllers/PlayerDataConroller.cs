@@ -14,6 +14,7 @@ namespace SorgeProject.Controller
         [SerializeField] Object.HandBehaviour hand;
 
         [SerializeField] MoneyBehaviour m_money;
+        [SerializeField] PlayTimeBehaviour m_playTime;
 
         public bool IsInitialized => true;
 
@@ -27,6 +28,7 @@ namespace SorgeProject.Controller
         {
             PlayingTime += Time.deltaTime;
             m_money.View = Money;
+            m_playTime.View = (int)PlayingTime;
         }
 
         public void Setup() {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace SorgeProject.Controller
 {
@@ -18,6 +19,9 @@ namespace SorgeProject.Controller
         IController[] controllers;
         void Start()
         {
+            Instance = this;
+            LastScore = null;
+
             Current = Status.Setup;
 
             controllers = gameObject.GetComponents<IController>();
@@ -61,12 +65,52 @@ namespace SorgeProject.Controller
             foreach (var controller in controllers) action(controller);
         }
 
+        public void GameEnd(EndingType endingType)
+        {
+            var controller = GetComponent<PlayerDataConroller>();
+            LastScore = new EndingParams();
+            LastScore.day = (int)controller.PlayingTime;
+            LastScore.money = (int)controller.Money;
+
+            switch(endingType)
+            {
+                case EndingType.ALPHA_WIN:
+                    break;
+                case EndingType.BETA_WIN:
+                    break;
+                case EndingType.COLD_WAR:
+                    break;
+                case EndingType.BURN_WAR:
+                    break;
+                case EndingType.DEATH:
+                    break;
+            }
+        }
+
         public Status Current { get; private set; }
+
+        static public GameController Instance { get; private set; }
+        static public EndingParams LastScore { get; private set; }
     }
 
     public enum Status
     {
         Setup,
         Playing
+    }
+
+    public enum EndingType
+    {
+        ALPHA_WIN,
+        BETA_WIN,
+        COLD_WAR,
+        BURN_WAR,
+        DEATH
+    }
+
+    public class EndingParams
+    {
+        public int day;
+        public int money;
     }
 }

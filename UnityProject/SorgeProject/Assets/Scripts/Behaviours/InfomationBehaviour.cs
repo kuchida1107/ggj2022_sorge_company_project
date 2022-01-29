@@ -30,6 +30,7 @@ namespace SorgeProject.Object
         public int Power { get; private set; }
         public int Moral { get; private set; }
         public int Trust { get; private set; }
+        public string Title { get; private set; }
 
         public int EventId { get; private set; }
 
@@ -82,7 +83,11 @@ namespace SorgeProject.Object
             Moral = data.moral;
             Trust = data.trust;
 
+            Title = data.title;
+
             EventId = data.event_id;
+
+            GetComponent<View.InfomationView>().SetData(this);
         }
 
         void Start()
