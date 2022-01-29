@@ -40,9 +40,6 @@ public class NationMeterController : MonoBehaviour
         {
             alphaPowerSlider.minValue = betaPowerSlider.minValue = alphaMoralSlider.minValue = betaMoralSlider.minValue = 0f;
             alphaPowerSlider.maxValue = betaPowerSlider.maxValue = alphaMoralSlider.maxValue = betaMoralSlider.maxValue = 100f;
-            alphaPowerSlider.value = betaMoralSlider.value = alphaMoralSlider.value = betaPowerSlider.value = 50f;
-            SetImageSprite(alphaTrustMeter, 50.0f);
-            SetImageSprite(betaTrustMeter, 50.0f);
         }
         else
         {
@@ -78,7 +75,7 @@ public class NationMeterController : MonoBehaviour
                         SetSliderValue(alphaPowerSlider, value);
                         break;
                     case NATION_NAME.BETA:
-                        SetSliderValue(alphaMoralSlider, value); ;
+                        SetSliderValue(betaPowerSlider, value); ;
                         break;
                 }
                 break;
