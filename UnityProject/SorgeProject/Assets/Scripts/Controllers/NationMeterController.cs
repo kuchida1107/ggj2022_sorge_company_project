@@ -80,6 +80,15 @@ public class NationMeterController : MonoBehaviour
                 }
                 break;
             case METER_TYPE.TRUST:
+                switch (eNation)
+                {
+                    case NATION_NAME.ALPHA:
+                        SetImageSprite(alphaTrustMeter, value);
+                        break;
+                    case NATION_NAME.BETA:
+                        SetImageSprite(betaTrustMeter, value); ;
+                        break;
+                }
                 break;
         }
     }
