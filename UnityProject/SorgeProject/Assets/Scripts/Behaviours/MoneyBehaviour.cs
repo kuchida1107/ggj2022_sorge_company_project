@@ -31,10 +31,13 @@ public class MoneyBehaviour : MonoBehaviour
         float timer = m_animTime;
         while (timer > 0)
         {
-            float t = timer / m_animTime;
-
+            float t = 1f - timer / m_animTime;
+            t = t * t * t;
+            SetText((int)Mathf.Lerp(_prev, value, t));
+            yield return null;
             timer -= Time.deltaTime;
         }
+        SetText(value);
     }
 
     void SetText(int value)
