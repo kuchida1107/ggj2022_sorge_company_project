@@ -84,7 +84,7 @@ namespace SorgeProject.Object
 
             Cost = data.price;
 
-            SellCost = (int) Mathf.Round((float)Cost * (data.profit + 1f));
+            SellCost = (int) Mathf.Round(Mathf.Max((float)Cost, 10f)  * (data.profit + 1f));
 
             Power = data.power;
             Moral = data.moral;
