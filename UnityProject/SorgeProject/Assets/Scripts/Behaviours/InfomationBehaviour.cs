@@ -162,7 +162,7 @@ namespace SorgeProject.Object
                 yield return null;
             }
 
-            Destroy(this);
+            GameObject.Destroy(gameObject);
         }
 
         void StartColorTransition()
