@@ -24,7 +24,7 @@ namespace SorgeProject.Object
         [SerializeField] float colorTransitionTime = 10.0f;
 
         AudioSource audioSource;
-        [SerializeField] AudioClip pickClip, dropClip, destroyClip;
+        [SerializeField] AudioClip pickClip, dropClip, destroyClip, purchaseFailClip;
         public string flavorString { get; private set; }
 
         public float LifeTime { get; private set; }
@@ -223,6 +223,12 @@ namespace SorgeProject.Object
         {
             base.OnBeginDrag(eventData);
             audioSource.clip = pickClip;
+            audioSource.Play();
+        }
+
+        public void OnPurchaseFailed()
+        {
+            audioSource.clip = purchaseFailClip;
             audioSource.Play();
         }
     }
