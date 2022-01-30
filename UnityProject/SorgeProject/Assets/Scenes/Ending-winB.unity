@@ -277,6 +277,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51302796185570592, guid: 8d3fd08b2f0e0ed49a65aa64e41baa7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 51302796185570598, guid: 8d3fd08b2f0e0ed49a65aa64e41baa7c,
         type: 3}
       propertyPath: m_Sprite
@@ -392,6 +397,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 51302796651076785, guid: 8d3fd08b2f0e0ed49a65aa64e41baa7c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u30D9\u30FC\u30BF\u30E9\u30F3\u30C9\u306F\u30A2\u30EB\u30D5\u30A1\u30CB\u30A2\u3068\u306E\u6226\u4E89\u306B\u52DD\u5229\u3057\u305F\u3002\r\n\u591A\u304F\u306E\u72A0\u7272\u3092\u790E\u306B\u5E73\u548C\u306F\u751F\u307F\u51FA\u3055\u308C\u308B\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 51302796651076785, guid: 8d3fd08b2f0e0ed49a65aa64e41baa7c,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 176
       objectReference: {fileID: 0}
     - target: {fileID: 51302797037752941, guid: 8d3fd08b2f0e0ed49a65aa64e41baa7c,
         type: 3}
