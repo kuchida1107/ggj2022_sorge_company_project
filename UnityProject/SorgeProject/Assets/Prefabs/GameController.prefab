@@ -67,6 +67,17 @@ MonoBehaviour:
   - {fileID: 0}
   infomationPrefab: {fileID: 219314255088848672, guid: 69892b587dfd46d4fa5c5891bfb5f882,
     type: 3}
+  spriteKeys:
+  - highest: 0
+    sprite: {fileID: 21300000, guid: 1bc7330bcfaa44247ba7fb8fe368fb7b, type: 3}
+  - highest: 4
+    sprite: {fileID: 21300000, guid: 0010a1456df51564e8270a0f4cff4156, type: 3}
+  - highest: 2
+    sprite: {fileID: 21300000, guid: 7cbbbcac48195e242bba467e3ba2ad0d, type: 3}
+  - highest: 1
+    sprite: {fileID: 21300000, guid: 8c37011b9d66e1a41821f648c064e9ca, type: 3}
+  - highest: 3
+    sprite: {fileID: 21300000, guid: efd9c71cd97e5984aa54f483803c0d36, type: 3}
 --- !u!114 &226453267
 MonoBehaviour:
   m_ObjectHideFlags: 0

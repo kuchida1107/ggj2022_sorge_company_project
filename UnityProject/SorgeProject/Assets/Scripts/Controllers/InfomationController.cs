@@ -5,6 +5,7 @@ using UnityEngine;
 using SorgeProject.Util;
 using SorgeProject.Data;
 using SorgeProject.Object;
+using System.Linq;
 
 namespace SorgeProject.Controller
 {
@@ -20,6 +21,8 @@ namespace SorgeProject.Controller
 
         [SerializeField] RegionBehaviour[] regions;
         [SerializeField] InfomationBehaviour infomationPrefab;
+
+        [SerializeField] SpritePair[] spriteKeys;
 
         private IEnumerator DataLoad()
         {
@@ -41,6 +44,7 @@ namespace SorgeProject.Controller
         void IController.Setup()
         {
             StartCoroutine(DataLoad());
+            Instance = this;
         }
 
         public bool IsInitialized { get => infoDatas != null; }
@@ -73,6 +77,41 @@ namespace SorgeProject.Controller
             regions[regionIdx].Pop<InfomationBehaviour>(instance);
         }
 
+        public static Sprite GetCardSpriteByType(InfomationBehaviour infomation)
+        {
+            int profit = (infomation.SellCost - infomation.Cost) >> 1; //価格の補正　すごく適当
+            int power = infomation.Power;
+            int moral = infomation.Moral;
+            int trust = infomation.Trust;
+            int event_id = infomation.EventId;
+
+            InfomationHighest type;
+            if (event_id != 0) type = InfomationHighest.EVENT;
+            else if (profit > power && profit > moral && profit > trust) type = InfomationHighest.PROFIT;
+            else if (power > moral && power > trust) type = InfomationHighest.POWER;
+            else if (moral > trust) type = InfomationHighest.MORAL;
+            else type = InfomationHighest.TRUST;
+
+            var match = Instance.spriteKeys.FirstOrDefault(keyvalue => keyvalue.highest == type).sprite;
+            return match;
+        }
+
         public static InfomationController Instance { get; private set; }
+
+        private enum InfomationHighest
+        {
+            PROFIT,
+            POWER,
+            MORAL,
+            TRUST,
+            EVENT,
+        }
+
+        [System.Serializable]
+        private struct SpritePair
+        {
+            public InfomationHighest highest;
+            public Sprite sprite;
+        }
     }
 }
