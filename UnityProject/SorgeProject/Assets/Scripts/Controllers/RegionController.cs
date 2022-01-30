@@ -76,7 +76,7 @@ namespace SorgeProject.Controller
                 bool isMoralHigh = alphaniaParam.moral > 70 && betalandParam.moral > 70;
                 bool isPowerHigh = alphaniaParam.power > 70 && betalandParam.power > 70;
                 bool isMoralLow = alphaniaParam.moral < 30 && betalandParam.moral < 30;
-                bool isPowerLow = alphaniaParam.power < 30 && betalandParam.power > 30;
+                bool isPowerLow = alphaniaParam.power < 30 && betalandParam.power < 30;
                 if (isMoralHigh && isPowerHigh) type = EndingType.BURN_WAR;
                 else if (isMoralHigh && isPowerLow) type = EndingType.COLD_WAR;
                 else if (isMoralLow && isPowerHigh) type = EndingType.PEACE;

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending-winB.unity
     guid: e5a39076304dbe14dab4f2cc4875bdf6
+  - enabled: 1
+    path: Assets/Scenes/Ending-peace.unity
+    guid: 0242782c588b30445a5a34e0ea43c553
   m_configObjects: {}

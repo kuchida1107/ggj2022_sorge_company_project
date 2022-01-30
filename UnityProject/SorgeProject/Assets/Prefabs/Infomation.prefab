@@ -735,6 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca32f77c4199bd04298dad44d13e9ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardImage: {fileID: 5055374686372924197}
   titleStr: {fileID: 1357895875}
   powerValue: {fileID: 3537079715636158773}
   moralValue: {fileID: 5174857697488286879}
