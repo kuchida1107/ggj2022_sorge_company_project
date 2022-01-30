@@ -9,6 +9,7 @@ using SorgeProject.Data;
 
 namespace SorgeProject.Object
 {
+    [RequireComponent(typeof(AudioSource))]
     public class InfomationBehaviour : Draggable
     {
         float FadeAwayTime = 1.0f;
@@ -21,6 +22,9 @@ namespace SorgeProject.Object
         [SerializeField] Image informationColorTap;
         [SerializeField] Color alphaniaColor, betalandColor, nuetralColor;
         [SerializeField] float colorTransitionTime = 10.0f;
+
+        AudioSource audioSource;
+        [SerializeField] AudioClip pickClip, dropClip, destroyClip;
 
         public float LifeTime { get; private set; }
 
@@ -66,6 +70,8 @@ namespace SorgeProject.Object
                 }
                 StartFadeAwayAndDestroy(CanvasGroup, FadeAwayTime);
             }
+            audioSource.clip = dropClip;
+            audioSource.Play();
         }
 
         public void SetData(InfoData data, float lifeTime, NATION_NAME nation_name)
@@ -132,6 +138,8 @@ namespace SorgeProject.Object
                 CanvasGroup.interactable = false;
                 CanvasGroup.blocksRaycasts = false;
                 StartCoroutine(FadeAwayAndDestroy(CanvasGroup, FadeAwayTime));
+                audioSource.clip = destroyClip;
+                audioSource.Play();
             }
         }
 
@@ -202,6 +210,18 @@ namespace SorgeProject.Object
                     informationColorTap.color = nuetralColor;
                     break;
             }
+        }
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        public override void OnBeginDrag(PointerEventData eventData)
+        {
+            base.OnBeginDrag(eventData);
+            audioSource.clip = pickClip;
+            audioSource.Play();
         }
     }
 }
