@@ -25,6 +25,7 @@ namespace SorgeProject.Object
 
         AudioSource audioSource;
         [SerializeField] AudioClip pickClip, dropClip, destroyClip;
+        public string flavorString { get; private set; }
 
         public float LifeTime { get; private set; }
 
@@ -90,6 +91,7 @@ namespace SorgeProject.Object
             Trust = data.trust;
 
             Title = data.title;
+            flavorString = data.flavor;
 
             EventId = data.event_id;
 
